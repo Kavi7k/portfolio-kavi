@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaviyarasu V — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#09090b;--card:#141418;--line:#2a2a32;--text:#f4f4f5;--mute:#a1a1aa;--a:#c6ff3d;--b:#8b5cf6;--bad:#ff4d6d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--f:'Bauhaus 93','Bungee','Arial Black',Impact,sans-serif}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:'Space Grotesk','Segoe UI',Arial,sans-serif;font-weight:700;line-height:1.55;overflow:hidden;
+background-image:radial-gradient(circle at 85% 0%,rgba(139,92,246,.25),transparent 40%),radial-gradient(circle at 0% 40%,rgba(198,255,61,.08),transparent 35%)}
+h1,h2,h3,.logo,.btn,.nb,.tag,.stat b,.n,.cg{font-family:var(--f);font-weight:700;-webkit-text-stroke:.5px currentColor;letter-spacing:.03em;text-transform:uppercase}
+nav{flex:none;display:flex;justify-content:space-between;align-items:center;padding:14px 4vw;border-bottom:1px solid var(--line);background:rgba(9,9,11,.85)}
+.logo{color:var(--a);font-size:1.5rem}
+.nbs{display:flex;gap:4px;overflow-x:auto}
+.nb{background:none;border:0;color:var(--mute);padding:8px 12px;cursor:pointer;font-size:.85rem;border-radius:8px;white-space:nowrap}
+.nb.on,.nb:hover{color:#09090b;background:var(--a);-webkit-text-stroke:.3px #09090b}
+.stage{flex:1;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;overflow-y:auto;padding:30px 5vw 100px;opacity:0;visibility:hidden;transform:translateX(12%) scale(.94) rotateY(-8deg);filter:blur(12px);transition:transform .8s cubic-bezier(.7,0,.2,1),opacity .6s,filter .7s,visibility 0s .8s}
+.slide.left{transform:translateX(-12%) scale(.94) rotateY(8deg)}
+.slide.active{opacity:1;visibility:visible;transform:none;filter:none;transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .6s,filter .7s}
+.wrap{max-width:1100px;margin:auto;min-height:100%;display:flex;flex-direction:column;justify-content:center}
+.slide.active .wrap>*{animation:up .7s both}
+.slide.active .wrap>*:nth-child(2){animation-delay:.12s}.slide.active .wrap>*:nth-child(3){animation-delay:.24s}.slide.active .wrap>*:nth-child(4){animation-delay:.36s}
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2.8rem,10vw,8rem);line-height:.95}
+h1 span{color:transparent;-webkit-text-stroke:2px var(--a)}
+h2{font-size:clamp(2rem,6vw,4rem);line-height:1;margin-bottom:30px}
+h2 em{font-style:normal;color:var(--a)}
+.tag{align-self:flex-start;border:2px solid var(--a);color:var(--a);padding:6px 14px;border-radius:99px;font-size:.8rem;margin-bottom:22px}
+.lead{max-width:640px;color:var(--mute);font-size:1.15rem;margin:24px 0 30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:13px 24px;border-radius:12px;text-decoration:none;border:2px solid var(--a);font-size:.95rem;cursor:pointer;background:none;color:var(--a);transition:.2s}
+.btn.p{background:var(--a);color:#09090b;-webkit-text-stroke:.3px #09090b}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,255,61,.25)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-top:40px}
+.stat,.panel,.card,.cert{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.stat b{display:block;font-size:2rem;color:var(--a)}.stat small,.panel small{color:var(--mute);text-transform:uppercase;font-size:.72rem;letter-spacing:.1em}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:800px){.about{grid-template-columns:1fr}}
+.about p{font-size:1.2rem;color:#d4d4d8}
+.panel div{padding:10px 0;border-bottom:1px solid var(--line)}.panel div:last-child{border:0}.panel small{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card h3{font-size:1rem;color:var(--a);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips span{background:#1f1f26;border:1px solid var(--line);padding:5px 11px;border-radius:99px;font-size:.82rem}
+.proj{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;cursor:pointer;overflow:hidden;transition:.25s;margin-bottom:16px}
+.proj:hover,.proj:focus{border-color:var(--a);transform:translateY(-4px) scale(1.01);outline:0}
+.proj .n{position:absolute;right:18px;top:4px;font-size:5rem;color:rgba(255,255,255,.06)}
+.proj h3{font-size:clamp(1.1rem,3vw,1.7rem);margin-bottom:8px;max-width:80%}
+.proj p{color:var(--mute);font-size:.95rem}.proj .go{color:var(--a);margin-top:10px;font-size:.9rem}
+.tl{border-left:3px solid var(--a);padding-left:26px}.tl h3{font-size:1.5rem;margin-bottom:6px}.tl .d{color:var(--a);font-size:.9rem;margin-bottom:12px}
+.tl ul,.pj ul{padding-left:20px;color:#d4d4d8}.tl li,.pj li{margin:6px 0}
+.cert small{color:var(--a)}.cert h3{font-size:.95rem;margin:6px 0}.cert p{color:var(--mute);font-size:.88rem}
+.edu{margin-top:18px;background:linear-gradient(135deg,#1a1233,#141418);border:1px solid var(--b);border-radius:20px;padding:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+.edu h3{font-size:1.3rem}.cg{font-size:2.8rem;color:var(--a)}
+.ctl{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;justify-content:center;align-items:center;gap:14px;z-index:5;pointer-events:none}
+.ctl>*{pointer-events:auto}
+.ar{width:46px;height:46px;border-radius:50%;border:2px solid var(--a);background:rgba(9,9,11,.9);color:var(--a);font-size:1.2rem;cursor:pointer;font-family:inherit}
+.ar:hover{background:var(--a);color:#09090b}
+.dots{display:flex;gap:8px}.dots i{width:10px;height:10px;border-radius:99px;background:var(--line);cursor:pointer;transition:.4s}.dots i.on{width:30px;background:var(--a)}
+/* project pages */
+#pg{position:fixed;inset:0;z-index:20;background:rgba(5,5,8,.96);overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 4vw calc(env(safe-area-inset-bottom,0px) + 30px);opacity:0;visibility:hidden;transform:scale(.9) translateY(60px);transition:.5s cubic-bezier(.2,.8,.2,1),visibility 0s .5s}
+#pg.open{opacity:1;visibility:visible;transform:none;transition:.5s cubic-bezier(.2,.8,.2,1)}
+.pgw{max-width:1000px;margin:auto}
+.back{margin-bottom:14px}
+.pj h2{font-size:clamp(1.6rem,5vw,3rem);margin-bottom:10px}.pj .t{color:var(--b);filter:brightness(1.6);margin-bottom:14px}
+.frame{margin:22px 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0f0f13}
+.bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#1a1a20}
+.bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.url{margin-left:10px;background:#0b0b0e;border-radius:99px;padding:3px 14px;font-size:.78rem;color:var(--mute);flex:1}
+.pb{padding:20px}.demo{display:none}.demo.on{display:block;animation:up .5s both}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:700px){.dd{grid-template-columns:1fr}}
+.vid{position:relative;height:230px;border-radius:12px;background:linear-gradient(135deg,#1c1c2b,#0d2a2a);overflow:hidden;display:grid;place-items:center}
+.face{width:90px;height:110px;border:3px solid var(--a);border-radius:10px;display:grid;place-items:center;font-size:.7rem;color:var(--a);transition:.4s}
+.face.bad{border-color:var(--bad);color:var(--bad)}
+.scan{position:absolute;left:0;right:0;height:3px;background:var(--a);box-shadow:0 0 18px var(--a);animation:sc 2s linear infinite;opacity:0}
+.run .scan{opacity:1}@keyframes sc{from{top:0}to{top:100%}}
+.meter{height:14px;background:#1f1f26;border-radius:99px;overflow:hidden;margin:10px 0}.meter div{height:100%;width:0;background:var(--a);transition:.5s}
+.big{font-family:var(--f);font-size:1.8rem;margin-bottom:10px}
+.feed,.chat,.log{background:#0b0b0e;border-radius:12px;padding:12px;height:200px;overflow-y:auto;font-size:.85rem;margin-top:12px}
+.feed div,.log div{padding:5px 0;border-bottom:1px solid var(--line)}.bad{color:var(--bad)}.ok{color:var(--a)}
+.m{max-width:80%;padding:9px 13px;border-radius:14px;margin:7px 0;animation:up .3s both}
+.m.u{background:var(--b);margin-left:auto}.m.b{background:#1f1f26}.m small{display:block;color:var(--a);font-size:.7rem;margin-top:4px}
+.row{display:flex;gap:8px;margin-top:10px}
+input,textarea{flex:1;background:#0b0b0e;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:11px;font:inherit}
+textarea{width:100%;min-height:90px}
+mark{background:var(--bad);color:#fff;padding:1px 6px;border-radius:5px}
+.note{color:var(--mute);font-size:.8rem;margin-top:8px}
+.ref{display:flex;gap:12px;align-items:center;background:rgba(255,200,0,.12);border:2px dashed #ffc800;color:#ffd84d;border-radius:14px;padding:12px 16px;margin-bottom:20px;font-size:.92rem}
+.ref b{font-family:var(--f);background:#ffc800;color:#09090b;padding:3px 10px;border-radius:8px;white-space:nowrap;font-weight:400;font-size:.8rem}
+.badge{display:inline-block;background:#ffc800;color:#09090b;font-family:var(--f);font-size:.7rem;padding:3px 10px;border-radius:99px;margin-bottom:10px;font-weight:400}
+.frame{position:relative}.frame::after{content:'REFERENCE EXAMPLE';position:absolute;right:14px;bottom:12px;font-family:var(--f);font-size:.7rem;color:#ffc800;opacity:.8;pointer-events:none}
+</style>
+</head>
+<body>
+<nav><div class="logo">KV.</div><div class="nbs" id="nbs"></div></nav>
+<main class="stage">
+
+<section class="slide"><div class="wrap">
+<span class="tag">● Open to opportunities</span>
+<h1>Kaviyarasu<br><span>V.</span></h1>
+<p class="lead">Computer Science Engineer building AI systems, real-time platforms and data pipelines — from deepfake detection to LLM-powered support agents.</p>
+<div><div class="btns"><button class="btn p" onclick="go(3)">View Projects</button><button class="btn" onclick="go(6)">Contact</button></div>
+<div class="stats"><div class="stat"><b>8.12</b><small>CGPA / 10</small></div><div class="stat"><b>3</b><small>Projects</small></div><div class="stat"><b>4</b><small>Certificates</small></div><div class="stat"><b>2027</b><small>Graduating</small></div></div></div>
+</div></section>
+
+<section class="slide"><div class="wrap">
+<h2>About <em>Me</em></h2>
+<div class="about"><p>Final-year B.Tech Computer Science student at SRM IST, Trichy, passionate about AI/ML, generative AI and backend engineering. I turn real-world problems into working products with clean APIs, scalable pipelines and responsive interfaces.</p>
+<div class="panel"><div><small>Location</small>Tiruchirappalli, Tamil Nadu</div><div><small>Degree</small>B.Tech CSE · 2023 – 2027</div><div><small>Focus</small>AI / ML · LLMs · Data Engineering · Full-Stack</div><div><small>Languages</small>Tamil (Native) · English (Professional)</div></div></div>
+</div></section>
+
+<section class="slide"><div class="wrap">
+<h2>Tech <em>Stack</em></h2>
+<div class="grid" id="sk"></div>
+</div></section>
+
+<section class="slide"><div class="wrap">
+<h2>Selected <em>Projects</em></h2>
+<div class="ref"><b>NOTE</b><span>Project sample pages are reference examples only — simulated demos that illustrate each project, not the real systems.</span></div>
+<div id="pl"></div>
+</div></section>
+
+<section class="slide"><div class="wrap">
+<h2>Work <em>Experience</em></h2>
+<div class="tl"><h3>Python Web Development Intern</h3><div class="d">Global Infotech Solutions, T Nagar, Chennai · Jun 2025 – Jul 2025</div>
+<ul><li>Built and maintained Python web application modules using OOP principles.</li><li>Coded, debugged and troubleshot to improve reliability and performance.</li><li>Collaborated with the dev team following SDLC practices.</li></ul></div>
+</div></section>
+
+<section class="slide"><div class="wrap">
+<h2>Certs &amp; <em>Education</em></h2>
+<div class="grid">
+<div class="cert"><small>Mar 2026</small><h3>Getting Started with AI</h3><p>IBM SkillsBuild</p></div>
+<div class="cert"><small>Jun 2026</small><h3>Python Essentials</h3><p>Cisco Networking Academy</p></div>
+<div class="cert"><small>Mar 2026</small><h3>Fundamentals of DevOps on AWS</h3><p>Simplilearn</p></div>
+<div class="cert"><small>Jan 2026</small><h3>Python Basics</h3><p>Infosys Springboard</p></div></div>
+<div class="edu"><div><h3>SRM Institute of Science and Technology</h3><p>B.Tech CSE · Trichy · 2023 – 2027</p></div><div class="cg">8.12</div></div>
+</div></section>
+
+<section class="slide"><div class="wrap" style="text-align:center;align-items:center">
+<h2 style="font-size:clamp(2.5rem,9vw,6.5rem)">Let's <em>Build</em><br>Together</h2>
+<div class="btns" style="justify-content:center"><a class="btn p" href="mailto:kavi20057k@gmail.com">Email Me</a><a class="btn" href="https://www.linkedin.com/in/kaviyarasu-v" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="tel:+919566611543">+91 95666 11543</a></div>
+</div></section>
+</main>
+
+<div class="ctl"><button class="ar" id="pv" aria-label="Previous">←</button><div class="dots" id="dots"></div><button class="ar" id="nx" aria-label="Next">→</button></div>
+
+<div id="pg"><div class="pgw">
+<button class="btn back" id="cl">← Back to portfolio</button>
+<div class="ref"><b>REFERENCE ONLY</b><span>This page is a sample reference example. The demo below is a simulated illustration of the project, not the actual production system.</span></div>
+<div class="pj"><h2 id="pt"></h2><div class="t" id="ptl"></div><ul id="pu"></ul>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span class="url" id="url"></span></div><div class="pb">
+
+<div class="demo" id="d0"><div class="dd"><div class="vid" id="vid"><div class="face" id="fb">FACE</div><div class="scan"></div></div>
+<div><div class="note">Manipulation confidence</div><div class="meter"><div id="mb"></div></div><div class="big" id="ms">Idle</div><button class="btn p" id="r0">Analyze stream</button><div class="feed" id="feed"></div></div></div></div>
+
+<div class="demo" id="d1"><div class="chat" id="chat"><div class="m b">Hi! I'm the support agent. Try: refund, password, order tracking, or "talk to a human".</div></div>
+<div class="row"><input id="ci" placeholder="Ask something…"><button class="btn p" id="cs">Send</button></div></div>
+
+<div class="demo" id="d2"><div class="note">Raw input event (editable):</div>
+<textarea id="raw">Hi, I'm Priya Sharma. Email priya.sharma@mail.com, phone +91 98765 43210, Aadhaar 1234 5678 9012.</textarea>
+<div class="row"><button class="btn p" id="r2">Run pipeline</button></div>
+<div class="note">Redacted output:</div><div class="chat" id="out" style="height:auto;min-height:60px"></div>
+<div class="note">Audit log (PostgreSQL)</div><div class="log" id="log"></div></div>
+
+</div></div>
+<div class="note">Reference example only — simulated in the browser for illustration, not the production system.</div>
+</div></div></div>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var NAMES=['Home','About','Skills','Projects','Experience','Education','Contact'];
+var S=[].slice.call(document.querySelectorAll('.slide')),cur=0;
+$('nbs').innerHTML=NAMES.map(function(n,i){return '<button class="nb" onclick="go('+i+')">'+n+'</button>'}).join('');
+$('dots').innerHTML=NAMES.map(function(n,i){return '<i onclick="go('+i+')"></i>'}).join('');
+function go(n){n=Math.max(0,Math.min(S.length-1,n));cur=n;
+S.forEach(function(s,i){s.classList.toggle('active',i==n);s.classList.toggle('left',i<n)});
+[].forEach.call(document.querySelectorAll('.nb'),function(b,i){b.classList.toggle('on',i==n)});
+[].forEach.call(document.querySelectorAll('.dots i'),function(b,i){b.classList.toggle('on',i==n)});
+if(S[n])S[n].scrollTop=0}
+$('pv').onclick=function(){go(cur-1)};$('nx').onclick=function(){go(cur+1)};
+document.addEventListener('keydown',function(e){if(e.key=='Escape')closeP();else if(!$('pg').classList.contains('open')&&document.activeElement.tagName!='INPUT'&&document.activeElement.tagName!='TEXTAREA'){if(e.key=='ArrowRight')go(cur+1);if(e.key=='ArrowLeft')go(cur-1)}});
+var tx=0;document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>90&&!$('pg').classList.contains('open'))go(cur+(d<0?1:-1))},{passive:true});
+
+var SK={'Languages':['Python','Java','C','SQL'],'AI / ML':['Machine Learning','Deep Learning','Generative AI','LLMs','RAG','NLP','Scikit-learn','PyTorch','spaCy'],'Web / Backend':['HTML','CSS','FastAPI','React','REST APIs','WebSocket'],'Data / Databases':['NumPy','Matplotlib','MySQL','PostgreSQL','PGVector','Redis'],'Data Engineering':['Apache Kafka','NER','PII Detection','Data Pipelines','Audit Logging'],'Cloud / DevOps':['AWS','Docker','DevOps','Render'],'Tools':['Git','GitHub','Postman','VS Code','LangChain','LlamaIndex','OpenCV','Whisper','Grafana']};
+$('sk').innerHTML=Object.keys(SK).map(function(k){return '<div class="card"><h3>'+k+'</h3><div class="chips">'+SK[k].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div></div>'}).join('');
+
+var P=[{t:'Real-Time Deepfake Detection Platform',s:'Python · PyTorch · OpenCV · FastAPI · React · Redis · Docker',u:'deepfake-guard.app/live',d:'Analyzes video streams in real time to flag manipulated media.',l:['OpenCV frame extraction feeding a CNN + Vision Transformer ensemble.','Confidence scoring per frame.','WebSocket-based live alerts via FastAPI.']},
+{t:'Autonomous AI Customer Support Agent',s:'Python · LangChain · LlamaIndex · PGVector · FastAPI · Whisper',u:'support-agent.app/chat',d:'LLM + RAG agent giving context-aware support answers.',l:['Knowledge ingestion, embeddings and PGVector semantic retrieval.','LLM response guardrails.','Human-agent fallback with automated ticket creation.']},
+{t:'GDPR Data Pipeline with Auto-PII Redaction',s:'Python · Kafka · spaCy · PostgreSQL · Docker · Grafana',u:'pii-pipeline.app/monitor',d:'Detects and redacts personal data in streaming events.',l:['Kafka ingestion with spaCy NER.','Automated PII redaction engine.','PostgreSQL audit log + Grafana compliance monitoring.']}];
+$('pl').innerHTML=P.map(function(p,i){return '<div class="proj" tabindex="0" role="button" onclick="openP('+i+')" onkeydown="if(event.key==\'Enter\')openP('+i+')"><div class="n">0'+(i+1)+'</div><span class="badge">REFERENCE EXAMPLE</span><h3>'+p.t+'</h3><p>'+p.d+'</p><div class="go">Open project page →</div></div>'}).join('');
+function openP(i){var p=P[i];$('pt').textContent=p.t;$('ptl').textContent=p.s;$('url').textContent='https://'+p.u;
+$('pu').innerHTML=p.l.map(function(x){return '<li>'+x+'</li>'}).join('');
+[0,1,2].forEach(function(k){$('d'+k).classList.toggle('on',k==i)});
+$('pg').classList.add('open');$('pg').scrollTop=0}
+function closeP(){$('pg').classList.remove('open');clearInterval(iv);$('vid').classList.remove('run')}
+$('cl').onclick=closeP;
+
+var iv;$('r0').onclick=function(){clearInterval(iv);var t=0;$('feed').innerHTML='';$('vid').classList.add('run');
+iv=setInterval(function(){t++;var sc=Math.round(62+Math.random()*36),bad=sc>80;
+$('mb').style.width=sc+'%';$('mb').style.background=bad?'var(--bad)':'var(--a)';$('ms').textContent=sc+'% '+(bad?'FAKE':'REAL');$('ms').className='big '+(bad?'bad':'ok');$('fb').className='face'+(bad?' bad':'');
+var d=document.createElement('div');d.className=bad?'bad':'ok';d.textContent='ws://alert · frame '+(t*30)+' · '+(bad?'manipulated':'authentic')+' · '+sc+'%';$('feed').prepend(d);
+if(t>=10){clearInterval(iv);$('vid').classList.remove('run')}},700)};
+
+var KB=[[/refund|return/i,'Refunds are processed within 5–7 business days.','refund-policy.pdf'],[/password|login/i,'Use "Forgot password" on the login page to reset it.','account-help.md'],[/order|track|deliver/i,'Track your order with its ID under My Orders.','shipping-faq.md']];
+function say(c,h,s){var d=document.createElement('div');d.className='m '+c;d.innerHTML=h+(s?'<small>'+s+'</small>':'');$('chat').appendChild(d);$('chat').scrollTop=1e5}
+function send(){var q=$('ci').value.trim();if(!q)return;$('ci').value='';say('u',q.replace(/</g,'&lt;'));
+setTimeout(function(){var r;
+if(/ignore .*instruction|system prompt|jailbreak/i.test(q))return say('b','Guardrail: I can’t help with that request.','🛡 blocked by guardrail');
+if(/human|agent|person|complain/i.test(q))return say('b','Connecting you to a human agent.','🎫 ticket #TCK-'+Math.floor(1000+Math.random()*9000)+' created');
+for(var i=0;i<KB.length;i++)if(KB[i][0].test(q)){r=KB[i];break}
+if(r)say('b',r[1],'📄 retrieved: '+r[2]+' (PGVector)');else say('b','I’m not sure about that — escalating to a human agent.','🎫 ticket #TCK-'+Math.floor(1000+Math.random()*9000)+' created')},600)}
+$('cs').onclick=send;$('ci').onkeydown=function(e){if(e.key=='Enter')send()};
+
+var ev=0;$('r2').onclick=function(){var s=$('raw').value.replace(/&/g,'&amp;').replace(/</g,'&lt;'),c={EMAIL:0,ID:0,PHONE:0,NAME:0};
+function rep(re,k){s=s.replace(re,function(){c[k]++;return '<mark>['+k+']</mark>'})}
+rep(/[\w.+-]+@[\w-]+\.[\w.]+/g,'EMAIL');rep(/\b\d{4}\s\d{4}\s\d{4}\b/g,'ID');rep(/\+?\d[\d\s-]{8,}\d/g,'PHONE');rep(/\b[A-Z][a-z]+ [A-Z][a-z]+\b/g,'NAME');
+$('out').innerHTML=s;ev++;var n=c.EMAIL+c.ID+c.PHONE+c.NAME,d=document.createElement('div');
+d.innerHTML='<span class="ok">'+new Date().toLocaleTimeString()+'</span> · kafka event #'+ev+' · '+n+' PII items redacted (email '+c.EMAIL+', id '+c.ID+', phone '+c.PHONE+', name '+c.NAME+')';$('log').prepend(d)};
+go(0);
+</script>
+</body>
+</html>
